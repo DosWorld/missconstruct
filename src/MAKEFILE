@@ -1,0 +1,14 @@
+all: mcpp.exe
+
+mcpp.exe: mcpp.c
+        wcl -ms -k48k mcpp.c
+	upx -9 --8086 mcpp.exe
+install: mcpp.exe
+	copy /B mcpp.exe ..\bin\ /Y
+clean:
+	del mcpp.exe
+	del mcpp.obj
+	del /V *.bak
+	del /V *.err
+test: ..\bin\mcpp
+        ..\bin\mcpp ..\test.mc
